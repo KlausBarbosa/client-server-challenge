@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -60,7 +61,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 	var exg Usdbrl = cotacao.Usdbrl
 	NewExchangeRate(db, &exg)
-
 }
 
 func UsdBrlPrice() (*Cotacao, error) {
@@ -84,6 +84,10 @@ func UsdBrlPrice() (*Cotacao, error) {
 	err = json.Unmarshal(body, &c)
 	if err != nil {
 		return nil, err
+	}
+	select {
+	case <-ctx.Done():
+		fmt.Println()
 	}
 
 	return &c, nil
