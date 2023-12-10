@@ -1,3 +1,5 @@
+REQUIREMENTS
+
 Criado para atender o Desafio Client-Server-API(vide requisitos abaixo) para o curso Pos Go Expert (DevFullCycle)
 
 Neste desafio vamos aplicar o que aprendemos sobre webserver http, contextos,
