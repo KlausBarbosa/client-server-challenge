@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -72,7 +71,7 @@ func UsdBrlPrice() (*Cotacao, error) {
 	}
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Println("Erro - Tempo excedido na chamada da api Cotacao")
+		log.Println("Erro - Tempo excedido na chamada da API")
 		return nil, err
 	}
 	defer res.Body.Close()
@@ -85,10 +84,5 @@ func UsdBrlPrice() (*Cotacao, error) {
 	if err != nil {
 		return nil, err
 	}
-	select {
-	case <-ctx.Done():
-		fmt.Println()
-	}
-
 	return &c, nil
 }

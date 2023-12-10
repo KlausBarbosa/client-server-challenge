@@ -22,7 +22,8 @@ func main() {
 
 	req, err := http.NewRequestWithContext(ctx, "GET", "http://localhost:8080/cotacao", nil)
 	if err != nil {
-		panic(err)
+		//panic(err)
+		log.Println("Erro requestctxt")
 	}
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -32,11 +33,12 @@ func main() {
 	resp, err := io.ReadAll(res.Body)
 	if err != nil {
 		panic(err)
+
 	}
 	var data CotacaoRes
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
-		panic(err)
+		log.Println("Erro - Tempo excedido na chamada da api")
 	}
 
 	file, err := os.Create("cotacao.txt")
