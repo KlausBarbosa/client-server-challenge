@@ -39,6 +39,7 @@ func main() {
 	err = json.Unmarshal(resp, &data)
 	if err != nil {
 		log.Println("Erro - Tempo excedido na chamada da api")
+		panic(err)
 	}
 
 	file, err := os.Create("cotacao.txt")
@@ -47,4 +48,7 @@ func main() {
 	}
 	defer file.Close()
 	_, err = file.WriteString(fmt.Sprintf("Dólar: %s", data.CotacaoDolar))
+	if err != nil {
+		panic(err)
+	}
 }
